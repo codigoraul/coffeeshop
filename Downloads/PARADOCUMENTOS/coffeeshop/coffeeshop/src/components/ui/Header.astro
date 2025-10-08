@@ -1,0 +1,15 @@
+---
+interface Props {
+    usuario: {
+       nombre: string;
+       apellido: string;
+       edad: number;
+    }
+}
+const { usuario } = Astro.props;
+---
+
+<header>
+    <h4>Header component</h4>
+    <p>Nombre: {usuario.apellido  }</p>
+</header>
