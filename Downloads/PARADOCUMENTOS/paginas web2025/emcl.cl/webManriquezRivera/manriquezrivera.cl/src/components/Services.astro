@@ -1,0 +1,82 @@
+---
+import { getServices, getFeaturedImage } from '../lib/wordpress';
+
+// Obtener servicios desde WordPress
+const services = await getServices();
+
+// Función para limpiar HTML del excerpt
+function cleanExcerpt(html: string | undefined): string {
+  if (!html) return '';
+  return html.replace(/<[^>]*>/g, '').trim();
+}
+
+// Función para obtener el título de forma segura
+function getTitle(service: any): string {
+  return service.title?.rendered || service.title || 'Sin título';
+}
+
+// Función para obtener el excerpt de forma segura
+function getExcerpt(service: any): string {
+  if (service.excerpt?.rendered) {
+    return cleanExcerpt(service.excerpt.rendered);
+  }
+  if (service.content?.rendered) {
+    const text = cleanExcerpt(service.content.rendered);
+    return text.substring(0, 150) + '...';
+  }
+  return 'Servicio disponible';
+}
+---
+
+<section id="servicios" class="py-20 px-6 bg-cream">
+  <div class="max-w-container mx-auto">
+    <h2 class="text-center text-4xl md:text-5xl text-primary font-bold mb-16">
+      Nuestros Servicios
+    </h2>
+    
+    {services.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
+        {services.map((service) => {
+          const featuredImage = getFeaturedImage(service);
+          const title = getTitle(service);
+          const excerpt = getExcerpt(service);
+          
+          return (
+            <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
+              <div class="w-full h-56 overflow-hidden bg-gradient-to-br from-primary to-primary-light flex items-center justify-center">
+                <img 
+                  src={featuredImage} 
+                  alt={title} 
+                  class="w-full h-full object-cover" 
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-2xl text-primary font-semibold mb-4">
+                  {title}
+                </h3>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                  {excerpt}
+                </p>
+                <a 
+                  href={`/servicios/${service.slug}`} 
+                  class="inline-block px-6 py-2.5 bg-secondary text-primary rounded-lg font-semibold hover:bg-secondary-dark transition-all duration-300 hover:translate-x-1"
+                >
+                  Leer más
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-gray-600 text-lg">
+          No hay servicios disponibles en este momento.
+        </p>
+        <p class="text-gray-500 text-sm mt-2">
+          Asegúrate de que WordPress esté corriendo y configurado correctamente.
+        </p>
+      </div>
+    )}
+  </div>
+</section>

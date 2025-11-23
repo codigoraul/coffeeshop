@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Footer from "../../components/Footer.astro";
+import { getServices } from "../../lib/wordpress";
+
+// Generar rutas estáticas para todos los servicios
+export async function getStaticPaths() {
+  const services = await getServices();
+  
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+// Función para obtener título de forma segura
+function getTitle(service: any): string {
+  return service.title?.rendered || service.title || 'Servicio';
+}
+
+// Función para obtener contenido de forma segura
+function getContent(service: any): string {
+  return service.content?.rendered || '<p>Contenido no disponible</p>';
+}
+
+const title = getTitle(service);
+const content = getContent(service);
+---
+
+<BaseLayout title={`${title} · Manríquez Rivera`}>
+  <PageHero 
+    title={title}
+    breadcrumbs={[
+      { label: "Inicio", href: "/" },
+      { label: "Servicios", href: "/#servicios" },
+      { label: title }
+    ]}
+    backgroundImage="/images/bg-title.jpg"
+  />
+
+  <!-- Contenido Principal -->
+  <section class="py-20 px-6">
+    <div class="max-w-container mx-auto">
+      
+      <!-- Diseño de dos columnas: Imagen + Contenido -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
+        
+        <!-- Columna Izquierda: Imagen Destacada -->
+        <div class="relative">
+          <div class="sticky top-8">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src={service._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/servicio-default.jpg'}
+                alt={title}
+                class="w-full h-auto object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Contenido del Servicio -->
+        <div>
+          <div 
+            class="prose prose-lg max-w-none
+                   prose-headings:text-primary prose-headings:font-bold
+                   prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-8
+                   prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6
+                   prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
+                   prose-strong:text-primary prose-strong:font-semibold
+                   prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+                   prose-li:text-gray-700 prose-li:mb-2"
+            set:html={content}
+          />
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center bg-primary text-white py-16 px-8 rounded-2xl mt-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          ¿Necesita asesoría en {title}?
+        </h2>
+        <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+          Nuestro equipo de expertos está listo para ayudarle a resolver sus desafíos legales 
+          y proteger los intereses de su empresa.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#contacto" class="px-8 py-4 bg-secondary text-primary font-semibold rounded-lg hover:bg-secondary-dark transition-all duration-300 hover:scale-105 shadow-lg">
+            Solicitar Consulta
+          </a>
+          <a href="tel:+56912345678" class="px-8 py-4 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/30">
+            Llamar Ahora
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

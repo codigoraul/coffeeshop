@@ -1,0 +1,170 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Nosotros · Manríquez Rivera">
+  <PageHero 
+    title="Nosotros"
+    breadcrumbs={[
+      { label: "Inicio", href: "/" },
+      { label: "Nosotros" }
+    ]}
+    backgroundImage="/images/bg-title.jpg"
+  />
+
+  <!-- Contenido Principal -->
+  <section class="py-20 px-6">
+    <div class="max-w-container mx-auto">
+      
+      <!-- Sección: Quiénes Somos -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+        <!-- Imagen -->
+        <div class="order-2 lg:order-1">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img 
+              src="/images/nosotros-equipo.jpg" 
+              alt="Equipo Manríquez Rivera"
+              class="w-full h-[500px] object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- Texto -->
+        <div class="order-1 lg:order-2">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            ¿Quiénes Somos?
+          </h2>
+          <div class="space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              <strong class="text-primary">Manríquez Rivera</strong> es un estudio jurídico fundado con el propósito de brindar 
+              asesoría legal integral y de excelencia a nuestros clientes. Con más de 15 años de experiencia en el mercado, 
+              nos hemos consolidado como un referente en diversas áreas del derecho.
+            </p>
+            <p>
+              Nuestro equipo está conformado por profesionales altamente calificados, comprometidos con la defensa de los 
+              derechos e intereses de quienes confían en nosotros. Trabajamos con dedicación, ética y transparencia en cada caso.
+            </p>
+            <p>
+              Nos especializamos en derecho civil, laboral, comercial y de familia, ofreciendo soluciones jurídicas 
+              personalizadas que se adaptan a las necesidades específicas de cada cliente.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-6 mt-8">
+            <div class="text-center">
+              <div class="text-4xl font-bold text-secondary mb-2">15+</div>
+              <div class="text-sm text-gray-600">Años de Experiencia</div>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl font-bold text-secondary mb-2">500+</div>
+              <div class="text-sm text-gray-600">Casos Exitosos</div>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl font-bold text-secondary mb-2">98%</div>
+              <div class="text-sm text-gray-600">Satisfacción</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección: Nuestra Misión y Visión -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Texto -->
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            Nuestra Misión
+          </h2>
+          <div class="space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              Proporcionar servicios legales de la más alta calidad, basados en la excelencia profesional, 
+              la ética y el compromiso con nuestros clientes. Buscamos ser aliados estratégicos en la resolución 
+              de conflictos y en la protección de los derechos de las personas y empresas.
+            </p>
+          </div>
+
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6 mt-10">
+            Nuestra Visión
+          </h2>
+          <div class="space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              Ser reconocidos como uno de los estudios jurídicos más confiables y prestigiosos de Chile, 
+              destacándonos por nuestra innovación, profesionalismo y resultados excepcionales en cada caso que asumimos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Imagen -->
+        <div>
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img 
+              src="/images/nosotros-oficina.jpg" 
+              alt="Oficina Manríquez Rivera"
+              class="w-full h-[500px] object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valores -->
+      <div class="mt-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary text-center mb-12">
+          Nuestros Valores
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-cream p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-2">Integridad</h3>
+            <p class="text-gray-600 text-sm">Actuamos con honestidad y transparencia en cada decisión.</p>
+          </div>
+
+          <div class="bg-cream p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-2">Compromiso</h3>
+            <p class="text-gray-600 text-sm">Dedicación total con los intereses de nuestros clientes.</p>
+          </div>
+
+          <div class="bg-cream p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-2">Excelencia</h3>
+            <p class="text-gray-600 text-sm">Búsqueda constante de la más alta calidad profesional.</p>
+          </div>
+
+          <div class="bg-cream p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.29 7 12 12 20.71 7"/>
+                <line x1="12" x2="12" y1="22" y2="12"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-2">Innovación</h3>
+            <p class="text-gray-600 text-sm">Soluciones creativas adaptadas a cada desafío legal.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

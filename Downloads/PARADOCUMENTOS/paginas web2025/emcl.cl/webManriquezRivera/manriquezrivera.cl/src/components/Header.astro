@@ -1,0 +1,128 @@
+---
+---
+
+<header class="bg-primary text-white py-6 px-6 border-b border-black/5 relative">
+  <div class="max-w-container mx-auto flex items-center justify-between gap-8">
+    <div class="flex items-center gap-3">
+      <a href="/">
+      <img
+        src="/images/logoManriquezRivera.png"
+        alt="Manríquez Rivera"
+        class="h-14 w-auto"
+      />
+      </a>
+    </div>
+
+    <button
+      class="md:hidden inline-flex flex-col justify-center items-center bg-transparent border-0 p-2 cursor-pointer z-50"
+      type="button"
+      aria-label="Abrir menú"
+      data-menu-toggle
+    >
+      <span class="block w-6 h-0.5 bg-white my-1 rounded transition-all duration-300"></span>
+      <span class="block w-6 h-0.5 bg-white my-1 rounded transition-all duration-300"></span>
+      <span class="block w-6 h-0.5 bg-white my-1 rounded transition-all duration-300"></span>
+    </button>
+
+    <!-- Desktop Navigation -->
+    <nav
+      class="hidden md:flex gap-8 text-sm uppercase tracking-wider"
+      aria-label="Navegación principal"
+    >
+      <a href="/" class="nav-link">Inicio</a>
+      <a href="/nosotros" class="nav-link">Nosotros</a>
+      <a href="#servicios" class="nav-link">Servicios</a>
+      <a href="#equipo" class="nav-link">Equipo</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </nav>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav
+    class="mobile-nav"
+    aria-label="Navegación móvil"
+    data-primary-nav
+  >
+    <a href="/" class="nav-link">Inicio</a>
+    <a href="/nosotros" class="nav-link">Nosotros</a>
+    <a href="#servicios" class="nav-link">Servicios</a>
+    <a href="#equipo" class="nav-link">Equipo</a>
+    <a href="#contacto" class="nav-link">Contacto</a>
+  </nav>
+</header>
+
+<style>
+  .nav-link {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 0.25rem;
+    transition: color 0.2s;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0.125rem;
+    background-color: #DFBF68;
+    transition: width 0.2s ease-out;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #053237;
+    padding: 1.25rem 1.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 40;
+  }
+
+  .mobile-nav.is-open {
+    display: flex;
+  }
+
+  .mobile-nav .nav-link {
+    padding: 0.5rem 0;
+  }
+
+  /* Hide mobile nav on desktop */
+  @media (min-width: 768px) {
+    .mobile-nav {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector("[data-menu-toggle]");
+    const nav = document.querySelector("[data-primary-nav]");
+
+    if (button && nav) {
+      button.addEventListener("click", () => {
+        nav.classList.toggle("is-open");
+      });
+
+      const links = nav.querySelectorAll("a");
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("is-open");
+        });
+      });
+    }
+  });
+</script>
